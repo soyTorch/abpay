@@ -4,7 +4,7 @@ define('BASE_PATH', '/payment');
 
 // Configuración específica del sitio
 define('SITE_HOST', 'kja.vynkapay.com'); // Host actual
-define('IS_MATRIX', false); // Este es el sitio matriz
+define('IS_MATRIX', true); // Este es el sitio matriz
 define('SITE_NAME', 'VynkaPay Matrix'); // Nombre descriptivo del sitio
 
 // Configuración de la base de datos
