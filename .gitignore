@@ -1,0 +1,20 @@
+# Archivos de sistema
+.DS_Store
+.env
+*.log
+
+# Directorios de dependencias
+vendor/
+node_modules/
+
+# IDEs y editores
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Archivos temporales
+*.tmp
+*.temp
+*.bak 

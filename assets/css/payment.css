@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+  }
+  @media (max-width: 600px) {
+    body {
+      align-items: flex-start;
+      padding-top: 2rem;
+      min-height: auto;
+    }
+  }
+  .container {
+    background: #ffffff;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 400px;
+  }
+  #paypal-buttons {
+    width: 100%;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #333333;
+  }
+  
+  #loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    font-family: Arial, sans-serif;
+  }
+  
+  .loader-message {
+    text-align: center;
+  }
+  
+  .loader-message p {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    color: #333;
+  }
+  
+  .spinner {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #4caf50;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .limit-message {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 200px auto 0;
+    padding: 30px;
+    max-width: 600px;
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #e74c3c;
+  }
+  
+  .limit-message p {
+    font-size: 1.2rem;
+    color: #333;
+    margin-top: 20px;
+  }
+  
