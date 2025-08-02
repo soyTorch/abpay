@@ -100,4 +100,45 @@
     color: #333;
     margin-top: 20px;
   }
+
+  /* Estilos para el formulario HTML de PayPal */
+  .paypal-form-container {
+    text-align: center;
+    width: 100%;
+  }
+  
+  .paypal-button {
+    background-color: #ffc439;
+    background: linear-gradient(to bottom, #ffc439 0%, #ffab00 100%);
+    border: 1px solid #ffab00;
+    border-radius: 4px;
+    color: #111;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 24px;
+    text-decoration: none;
+    width: 100%;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+  }
+  
+  .paypal-button:hover {
+    background: linear-gradient(to bottom, #ffab00 0%, #ff9500 100%);
+    border-color: #ff9500;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .paypal-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .payment-info {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 1rem;
+    line-height: 1.4;
+  }
   

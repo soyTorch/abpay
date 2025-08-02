@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS config (
 -- Tabla de cuentas PayPal
 CREATE TABLE IF NOT EXISTS paypal_accounts (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    client_id VARCHAR(255) NOT NULL,
+    client_id VARCHAR(255) NULL COMMENT 'Opcional - Solo para compatibilidad con API antigua',
     email VARCHAR(255) NOT NULL,
     daily_limit INT NOT NULL DEFAULT 4,
     currency VARCHAR(3) NOT NULL DEFAULT 'EUR',
@@ -117,12 +117,24 @@ INSERT INTO config (`key`, value, is_shared) VALUES
     "consumer_secret": "cs_702e6bc7476a235ee3863836f3435659f92fb31a"
 }', TRUE);
 
--- Insertar cuenta PayPal de hardmode.net
-INSERT INTO paypal_accounts (client_id, email, daily_limit, currency) VALUES 
-('AbsoCIm2dhvT5fE9qexyAJIsL7xsjENdw0-E19VChP5yLXHFCXQxn8rhXGO6bA5f7keb1I0BEGQngc2y', '694094253@qq.com', 4, 'EUR');
+-- Migración: Hacer client_id opcional en tablas existentes
+ALTER TABLE paypal_accounts MODIFY COLUMN client_id VARCHAR(255) NULL COMMENT 'Opcional - Solo para compatibilidad con API antigua';
 
--- Asignar cuenta PayPal a hardmode.net
+-- Insertar cuentas PayPal (client_id es opcional ahora)
+INSERT INTO paypal_accounts (email, daily_limit, currency) VALUES 
+('694094253@qq.com', 4, 'EUR'),
+('example@paypal.com', 4, 'EUR'),
+('test@paypal.com', 4, 'EUR');
+
+-- Asignar cuentas PayPal a hardmode.net
 INSERT INTO site_paypal_accounts (site_id, paypal_account_id) 
 SELECT 
     (SELECT id FROM sites WHERE host = 'hardmode.net'),
-    (SELECT id FROM paypal_accounts WHERE email = '694094253@qq.com'); 
+    (SELECT id FROM paypal_accounts WHERE email = '694094253@qq.com')
+ON DUPLICATE KEY UPDATE paypal_account_id = paypal_account_id;
+
+-- Ejemplo de cómo agregar más cuentas
+-- INSERT INTO site_paypal_accounts (site_id, paypal_account_id) 
+-- SELECT 
+--     (SELECT id FROM sites WHERE host = 'hardmode.net'),
+--     (SELECT id FROM paypal_accounts WHERE email = 'example@paypal.com'); 

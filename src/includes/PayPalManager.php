@@ -51,7 +51,6 @@ class PayPalManager {
         return [
             'index' => $selectedAccount['id'] - 1, // Mantener compatibilidad con el código existente
             'account' => [
-                'client_id' => $selectedAccount['client_id'],
                 'email' => $selectedAccount['email'],
                 'daily_limit' => $selectedAccount['daily_limit'],
                 'currency' => $selectedAccount['currency']
@@ -66,7 +65,6 @@ class PayPalManager {
                 SELECT 
                     pa.id,
                     pa.email,
-                    pa.client_id,
                     pa.daily_limit,
                     pa.currency,
                     COALESCE(SUM(pc.count), 0) as total_usage_today
@@ -78,14 +76,13 @@ class PayPalManager {
                     pc.site_id = s.id AND 
                     pc.date = CURRENT_DATE()
                 WHERE pa.is_active = TRUE
-                GROUP BY pa.id, pa.email, pa.client_id, pa.daily_limit, pa.currency
+                GROUP BY pa.id, pa.email, pa.daily_limit, pa.currency
                 HAVING total_usage_today < pa.daily_limit
             ),
             best_combinations AS (
                 SELECT 
                     au.id,
                     au.email,
-                    au.client_id,
                     au.daily_limit,
                     au.currency,
                     au.total_usage_today,
@@ -133,7 +130,6 @@ class PayPalManager {
             'site_id' => $result['target_site_id'],
             'site_host' => $result['target_site_host'],
             'account' => [
-                'client_id' => $result['client_id'],
                 'email' => $result['email'],
                 'daily_limit' => $result['daily_limit'],
                 'currency' => $result['currency']
@@ -212,7 +208,6 @@ class PayPalManager {
 
         return [
             'id' => $account['id'],
-            'client_id' => $account['client_id'],
             'email' => $account['email'],
             'daily_limit' => $account['daily_limit'],
             'currency' => $account['currency'],

@@ -119,12 +119,12 @@ try {
         // Preparar metadatos del pago
         $metadata = [
             '_paypal_account_email' => $paypalAccount['email'],
-            '_paypal_account_client_id' => $paypalAccount['client_id'],
             '_paypal_account_currency' => $paypalAccount['currency'],
             '_paypal_payment_date' => date('Y-m-d H:i:s'),
             '_paypal_payment_ip' => $_SERVER['REMOTE_ADDR'] ?? 'Unknown',
             '_paypal_payment_user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? 'Unknown',
             '_paypal_payment_referer' => $_SERVER['HTTP_REFERER'] ?? 'Direct',
+            '_paypal_payment_method' => 'PayPal HTML Form',
             '_paypal_daily_payment_count' => $paypalManager->getDailyPaymentCount($accountIndex)
         ];
         
