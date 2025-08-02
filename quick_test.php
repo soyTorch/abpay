@@ -71,6 +71,7 @@ try {
     
     // Test 5: PayPal Manager
     echo "<h2>5. ✅ PayPal Manager</h2>";
+    require_once __DIR__ . '/src/includes/Logger.php';
     require_once __DIR__ . '/src/includes/PayPalManager.php';
     $paypalManager = new PayPalManager();
     echo "PayPalManager cargado correctamente<br>";
