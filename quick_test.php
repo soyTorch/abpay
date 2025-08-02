@@ -28,9 +28,8 @@ try {
     // Verificar tablas necesarias
     $tables = ['sites', 'paypal_accounts', 'site_paypal_accounts', 'payment_counters', 'logs'];
     foreach ($tables as $table) {
-        $stmt = $db->prepare("SHOW TABLES LIKE ?");
-        $stmt->execute([$table]);
-        if ($stmt->fetch()) {
+        $stmt = $db->query("SHOW TABLES LIKE '" . $table . "'");
+        if ($stmt && $stmt->fetch()) {
             echo "✅ Tabla '$table' existe<br>";
         } else {
             echo "❌ Tabla '$table' NO existe<br>";
